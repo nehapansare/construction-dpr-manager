@@ -11,6 +11,62 @@ Currently, two official plugins are available:
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+# 🏗️ Construction DPR Manager
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+A **Frontend Web Application** built with **React.js** to manage construction projects and submit **Daily Progress Reports (DPR)**.  
+Created for a **Frontend Developer Internship Task**, this project demonstrates responsive design, routing, and form handling.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** React.js (v18+)  
+- **Routing:** React Router v6  
+- **State Management:** useState, useContext  
+- **Styling:** CSS (component-level)  
+- **HTTP Client:** Axios / Fetch (mock data)  
+- **Build Tool:** Vite  
+
+---
+
+## 📂 Project Structure
+
+
+---
+
+## 🚀 Features
+
+### 🔑 Login Page
+- Email and password input  
+- Mock authentication: `test@test.com / 123456`  
+- Error message on failed login  
+- Redirects to **Project List** on success  
+
+### 📋 Project List
+- Displays **3–5 projects** (mock data)  
+- Shows **Name, Status, Start Date, Location**  
+- Status badges with colors for `Ongoing` / `Completed`  
+- Button to open **DPR Form**  
+
+### 📝 DPR Form
+- Displays selected project details  
+- Fields: **Date, Weather (dropdown), Work Description, Worker Count**  
+- Upload 1–3 photos  
+- Submit button with validation and success alert  
+
+### 📱 Responsive Design
+- Mobile-first layout (375px)  
+- Adapts to **tablet (768px)** and **desktop (1280px+)**  
+- No horizontal scroll  
+
+---
+
+## 💻 How to Run Locally
+
+1. Clone the repository
+
+```bash
+git clone <your-github-repo-link>
+cd construction-dpr-manager
+npm install
+http://localhost:5173
