@@ -1,57 +1,64 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"; // Make sure this path is correct
+import "./Login.css";
 
 function Login() {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // react-router-dom navigation hook
 
-  function handleLogin() {
+  const handleLogin = () => {
     let users = JSON.parse(localStorage.getItem("users")) || [];
-
     const validUser = users.find(
       (u) => u.email === email && u.password === password
     );
 
     if (validUser) {
       localStorage.setItem("loggedUser", email);
-      navigate("/projects");
+      navigate("/projects"); // Navigate to projects page
     } else {
       setError("Invalid Email or Password");
     }
-  }
+  };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
+    <div className="login-page">
+      <div className="login-card">
+        <h2>Welcome back</h2>
+        <p className="login-subtitle">Sign in to continue to your workspace</p>
 
-      <input
-        type="email"
-        placeholder="Enter Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <div className="input-group">
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-      <input
-        type="password"
-        placeholder="Enter Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-      <button onClick={handleLogin}>Login</button>
+        <button className="login-btn" onClick={handleLogin}>
+          Sign In
+        </button>
 
-      <p className="error">{error}</p>
+        <p className="error-msg">{error}</p>
 
-      <p className="link" onClick={() => navigate("/register")}>
-        New User? Register
-      </p>
-      <p className="forgot-link" onClick={() => navigate("/forgot")}>
-        Forgot Password?
-      </p>
+        <hr className="divider" />
+
+        <div className="footer-links">
+          <span onClick={() => navigate("/register")}>New user? Register</span>
+          <span onClick={() => navigate("/forgot")}>Forgot password?</span>
+        </div>
+      </div>
     </div>
   );
 }

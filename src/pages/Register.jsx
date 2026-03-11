@@ -1,90 +1,87 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
-function Register(){
+function Register() {
+  const navigate = useNavigate();
 
-const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repassword, setRepassword] = useState("");
+  const [error, setError] = useState("");
 
-const [email,setEmail] = useState("");
-const [password,setPassword] = useState("");
-const [repassword,setRepassword] = useState("");
-const [error,setError] = useState("");
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-function handleRegister(e){
+    if (password !== repassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
-e.preventDefault();
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const userExists = users.find((u) => u.email === email);
 
-if(password !== repassword){
-setError("Passwords do not match");
-return;
-}
+    if (userExists) {
+      setError("User already exists");
+      return;
+    }
 
-let users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push({ email, password });
+    localStorage.setItem("users", JSON.stringify(users));
 
-const userExists = users.find((u)=>u.email === email);
+    alert("Registration Successful");
+    navigate("/"); // Navigate back to login page
+  };
 
-if(userExists){
-setError("User already exists");
-return;
-}
+  return (
+    <div className="register-page">
+      <div className="register-card">
+        <h2>Create Account</h2>
 
-users.push({email,password});
+        <form onSubmit={handleRegister}>
+          <div className="input-group">
+            <input
+              type="email"
+              placeholder="Enter Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-localStorage.setItem("users",JSON.stringify(users));
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-alert("Registration Successful");
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder="Re-enter Password"
+              value={repassword}
+              onChange={(e) => setRepassword(e.target.value)}
+              required
+            />
+          </div>
 
-navigate("/");
-}
+          <button type="submit" className="register-btn">
+            Register
+          </button>
 
-return(
+          <p className="error-msg">{error}</p>
 
-<div className="container">
-
-<h2>Register</h2>
-
-<form onSubmit={handleRegister}>
-
-<input
-type="email"
-placeholder="Enter Email"
-value={email}
-onChange={(e)=>setEmail(e.target.value)}
-required
-/>
-
-<input
-type="password"
-placeholder="Enter Password"
-value={password}
-onChange={(e)=>setPassword(e.target.value)}
-required
-/>
-
-<input
-type="password"
-placeholder="Re-enter Password"
-value={repassword}
-onChange={(e)=>setRepassword(e.target.value)}
-required
-/>
-
-<button type="submit">
-Register
-</button>
-
-<p style={{color:"red"}}>{error}</p>
-
-<p className="link" onClick={()=>navigate("/")}>
-Already have account? Login
-</p>
-
-</form>
-
-</div>
-
-);
-
+          <p className="footer-links" onClick={() => navigate("/")}>
+            Already have an account? Login
+          </p>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default Register;
