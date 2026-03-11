@@ -1,0 +1,100 @@
+/* page background */
+
+.project-page{
+background:#f4f6f9;
+min-height:100vh;
+padding:40px 20px;
+}
+
+/* container */
+
+.project-container{
+max-width:1100px;
+margin:auto;
+}
+
+/* title */
+
+.project-title{
+text-align:center;
+font-size:30px;
+color:#2c3e50;
+margin-bottom:40px;
+}
+
+/* grid */
+
+.project-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+/* card */
+
+.project-card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.project-card:hover{
+transform:translateY(-6px);
+}
+
+/* project name */
+
+.project-name{
+color:#34495e;
+margin-bottom:10px;
+}
+
+/* text */
+
+.project-card p{
+font-size:14px;
+margin:5px 0;
+}
+
+/* button */
+
+.dpr-btn{
+margin-top:12px;
+padding:8px 14px;
+background:#3498db;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:14px;
+}
+
+.dpr-btn:hover{
+background:#2980b9;
+}
+
+/* status badge */
+
+.status{
+padding:4px 8px;
+border-radius:5px;
+font-size:12px;
+margin-left:5px;
+color:white;
+}
+
+/* status colors */
+
+.ongoing{
+background:#f39c12;
+}
+
+.completed{
+background:#2ecc71;
+}
+
+.pending{
+background:#7f8c8d;
+}

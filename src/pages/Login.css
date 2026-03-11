@@ -1,0 +1,94 @@
+/* Light theme with transparent container (glassmorphism) */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #34495e; /* Light blue background */
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background: rgba(255, 249, 176, 0.1); /* Light yellow with transparency */
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px); /* Slight blur for glass effect */
+  text-align: center;
+  color: #000; /* Changed to black */
+  transition: 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.container h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #000; /* Heading in black */
+}
+
+.container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+  transition: 0.3s;
+  background: rgba(255, 255, 255, 0.7); /* Slightly transparent input */
+  color: #000; /* Input text black */
+}
+
+.container input::placeholder {
+  color: #555; /* Placeholder slightly dark */
+}
+
+.container input:focus {
+  border-color: #003cff;
+  box-shadow: 0 0 8px rgba(255, 153, 0, 0.4);
+}
+
+.container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #a9c3c5;
+  border: none;
+  border-radius: 10px;
+  color: #000; /* Button text black */
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container button:hover {
+  background: #ffdd66;
+  transform: translateY(-2px);
+}
+
+.container .link,
+.container .forgot-link {
+  margin-top: 15px;
+  display: block;
+  cursor: pointer;
+  color: #000; /* Links black */
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.container .link:hover,
+.container .forgot-link:hover {
+  color: #ff6600; /* Hover orange */
+}
+
+.error {
+  color: #e60000;
+  font-weight: bold;
+  margin-top: 10px;
+}

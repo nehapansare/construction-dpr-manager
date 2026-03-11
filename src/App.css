@@ -1,0 +1,612 @@
+/* ============================================
+   CONSTRUCTION DPR APP — INDUSTRIAL BLUEPRINT
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --bg-primary:    #0d0f14;
+  --bg-secondary:  #141820;
+  --bg-card:       #1a1f2e;
+  --bg-elevated:   #1f2535;
+  --border:        #2a3245;
+  --border-bright: #3a4a6a;
+  --accent:        #f5a623;
+  --accent-dim:    #c47d0e;
+  --accent-glow:   rgba(245, 166, 35, 0.15);
+  --blue:          #4a9eff;
+  --blue-dim:      #2d6bbf;
+  --text-primary:  #e8ecf4;
+  --text-secondary:#8a95b0;
+  --text-muted:    #4a5570;
+  --danger:        #ff4a4a;
+  --success:       #4aff8c;
+  --grid-color:    rgba(74, 158, 255, 0.04);
+  --shadow-card:   0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow:   0 0 20px rgba(245, 166, 35, 0.2);
+  --radius:        6px;
+  --radius-lg:     12px;
+  --transition:    all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Auth Pages: Login / Register / Forgot ── */
+.container,
+.forgot-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.container {
+  flex-direction: column;
+}
+
+/* Card shared style */
+.container > *,
+.forgot-box {
+  width: 100%;
+  max-width: 420px;
+}
+
+.container {
+  gap: 0;
+}
+
+/* Reuse forgot-box styling for .container too via pseudo-wrapper */
+.container::before {
+  content: none;
+}
+
+/* Wrap the auth form content */
+.container h2,
+.container input,
+.container button,
+.container p,
+.forgot-box h2,
+.forgot-box input,
+.forgot-box button,
+.forgot-box p {
+  width: 100%;
+}
+
+/* Card container for auth pages */
+.container {
+  background: none;
+}
+
+/* ── Auth Card ── */
+.container > h2:first-child {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(245, 166, 35, 0.4);
+  margin-bottom: 8px;
+  text-align: center;
+  position: relative;
+}
+
+.container > h2:first-child::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  margin: 8px auto 28px;
+}
+
+/* Wrap auth forms visually using a background panel */
+.container {
+  position: relative;
+}
+
+/* Create card effect via a pseudo background */
+.container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Draw the card behind all auth content */
+.container::after {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(420px, calc(100vw - 48px));
+  height: auto;
+  min-height: 380px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.04);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Inputs ── */
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="text"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: var(--transition);
+  outline: none;
+  margin-bottom: 14px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--blue);
+  background: var(--bg-elevated);
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.12);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6) sepia(1) hue-rotate(180deg);
+  cursor: pointer;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a95b0' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+select option {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+input[type="file"] {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-style: dashed;
+  border-color: var(--border-bright);
+}
+
+input[type="file"]:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Buttons ── */
+button[type="submit"],
+button[onClick],
+button {
+  display: block;
+  width: 100%;
+  padding: 13px 24px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow), 0 4px 16px rgba(0,0,0,0.4);
+}
+
+button:hover::before {
+  opacity: 1;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Secondary / nav buttons */
+button.secondary,
+.project-card button {
+  background: transparent;
+  color: var(--blue);
+  border: 1px solid var(--blue-dim);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 9px 18px;
+  width: auto;
+}
+
+button.secondary:hover,
+.project-card button:hover {
+  background: rgba(74, 158, 255, 0.1);
+  border-color: var(--blue);
+  box-shadow: 0 0 16px rgba(74, 158, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ── Links / Navigation text ── */
+.link,
+.forgot-link {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition);
+  display: block;
+  padding: 4px 0;
+  margin-bottom: 6px;
+  position: relative;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.link::after,
+.forgot-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s;
+}
+
+.link:hover,
+.forgot-link:hover {
+  color: var(--accent);
+}
+
+.link:hover::after,
+.forgot-link:hover::after {
+  width: 100%;
+}
+
+/* ── Error / Message text ── */
+p[style*="color:red"],
+p[style*="color: red"] {
+  color: var(--danger) !important;
+  font-size: 0.82rem;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 8px 12px;
+  background: rgba(255, 74, 74, 0.08);
+  border-left: 2px solid var(--danger);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 12px;
+  display: block;
+}
+
+p[style*="color:red"]:empty,
+p[style*="color: red"]:empty {
+  display: none;
+}
+
+.message {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ── Forgot Password Page ── */
+.forgot-container {
+  background: none;
+}
+
+.forgot-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.forgot-box::before {
+  content: 'RESET';
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  color: rgba(245, 166, 35, 0.04);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.forgot-box h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.forgot-box h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  margin-top: 8px;
+}
+
+.forgot-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Project List Page ── */
+.project-list-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.project-list-page h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.6rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.project-list-page h2::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 34px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--border-bright);
+  transition: background 0.2s;
+}
+
+.project-card:hover {
+  border-color: var(--border-bright);
+  background: var(--bg-elevated);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-card);
+}
+
+.project-card:hover::before {
+  background: var(--accent);
+}
+
+.project-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.project-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 3px;
+}
+
+.project-card p strong {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.status-active   { background: rgba(74, 255, 140, 0.12); color: var(--success); border: 1px solid rgba(74,255,140,0.25); }
+.status-pending  { background: rgba(245,166,35, 0.12);  color: var(--accent);  border: 1px solid rgba(245,166,35,0.25); }
+.status-inactive { background: rgba(138,149,176,0.1);   color: var(--text-secondary); border: 1px solid var(--border); }
+
+/* ── DPR Form Page ── */
+.dpr-form-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.dpr-form-page h2,
+form > h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dpr-form-page h2::before,
+form > h2::before {
+  content: '//';
+  color: var(--accent);
+  font-size: 1.6rem;
+}
+
+form {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  box-shadow: var(--shadow-card);
+}
+
+form label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+/* ── Field Groups ── */
+.field-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Loading animation ── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Fade in on mount ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.container > *,
+.forgot-box,
+.project-card,
+form {
+  animation: fadeUp 0.4s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.05s; }
+.project-card:nth-child(2) { animation-delay: 0.1s;  }
+.project-card:nth-child(3) { animation-delay: 0.15s; }
+.project-card:nth-child(4) { animation-delay: 0.2s;  }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .container::after { min-height: 340px; }
+  form { padding: 24px 20px; }
+  .project-card { flex-direction: column; align-items: flex-start; }
+  .field-group { grid-template-columns: 1fr; }
+}

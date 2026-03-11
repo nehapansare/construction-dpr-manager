@@ -1,0 +1,56 @@
+.form-container{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+background:#f4f6f9;
+}
+
+.form-box{
+background:white;
+padding:30px;
+width:400px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.project-name{
+color:#3498db;
+margin-bottom:10px;
+}
+
+form label{
+font-weight:600;
+display:block;
+margin-top:10px;
+}
+
+form input,
+form select,
+form textarea{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+textarea{
+height:80px;
+resize:none;
+}
+
+button{
+margin-top:15px;
+width:100%;
+padding:10px;
+background:#3498db;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2980b9;
+}
