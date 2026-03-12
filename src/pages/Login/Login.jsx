@@ -9,7 +9,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Mock authentication
+   
     if (email === "test@test.com" && password === "123456") {
       localStorage.setItem("loggedUser", email);
       navigate("/projects");

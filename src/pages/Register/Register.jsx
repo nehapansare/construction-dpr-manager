@@ -17,7 +17,7 @@ function Register() {
 
     if (password !== repassword) {
       setError("Passwords do not match");
-      // Show error toast
+      
       toast.error("Passwords do not match", { theme: "dark" });
       return;
     }
@@ -40,13 +40,13 @@ function Register() {
       theme: "dark",
     });
 
-    // Reset form
+    
     setEmail("");
     setPassword("");
     setRepassword("");
     setError("");
 
-    // Navigate back after short delay
+    
     setTimeout(() => {
       navigate("/");
     }, 1500);
@@ -100,7 +100,7 @@ function Register() {
         </form>
       </div>
 
-      {/* Toast container */}
+    
       <ToastContainer />
     </div>
   );

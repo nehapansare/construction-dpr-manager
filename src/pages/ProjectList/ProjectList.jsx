@@ -8,7 +8,7 @@ function ProjectList() {
   return (
     <div className="project-page">
       <div className="project-container">
-        {/* Back Arrow */}
+        
         <div className="back-arrow" onClick={() => navigate("/")}>
           ← Back
         </div>

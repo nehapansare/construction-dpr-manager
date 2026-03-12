@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify"; // Import Toastify
-import "react-toastify/dist/ReactToastify.css"; // Toastify CSS
+import { ToastContainer, toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 import projects from "../../data/projects";
 import "./DPRForm.css";
 
@@ -16,9 +16,9 @@ function DPRForm() {
   const [images, setImages] = useState([]);
   const [message, setMessage] = useState("");
 
-  // Handle image upload and preview
+  
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files).slice(0, 3); // Max 3 images
+    const files = Array.from(e.target.files).slice(0, 3); 
     const previews = files.map((file) => URL.createObjectURL(file));
     setImages(previews);
   };
@@ -26,7 +26,7 @@ function DPRForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation
+  
     if (!selectedProject) {
       setMessage("Please select a project");
       return;
@@ -36,9 +36,9 @@ function DPRForm() {
       return;
     }
 
-    setMessage(""); // clear message
+    setMessage(""); 
 
-    // Show success toast instead of alert
+    
     toast.success("✅ DPR Submitted Successfully!", {
       position: "top-right",
       autoClose: 3000,
@@ -49,7 +49,7 @@ function DPRForm() {
       theme: "dark",
     });
 
-    // Reset form
+  
     setSelectedProject("");
     setDate("");
     setWeather("");
@@ -60,7 +60,7 @@ function DPRForm() {
 
   return (
     <div className="form-container">
-      {/* Fixed Back Arrow */}
+      
       <div className="fixed-back-arrow" onClick={() => navigate("/projects")}>
         ← Back
       </div>
@@ -69,7 +69,7 @@ function DPRForm() {
         <h2>DPR Form</h2>
 
         <form onSubmit={handleSubmit}>
-          {/* Project Dropdown */}
+         
           <select
             value={selectedProject}
             onChange={(e) => setSelectedProject(e.target.value)}
@@ -83,7 +83,7 @@ function DPRForm() {
             ))}
           </select>
 
-          {/* Date Picker */}
+         
           <input
             type="date"
             value={date}
@@ -91,7 +91,7 @@ function DPRForm() {
             required
           />
 
-          {/* Weather Dropdown */}
+          
           <select
             value={weather}
             onChange={(e) => setWeather(e.target.value)}
@@ -103,7 +103,7 @@ function DPRForm() {
             <option>Rainy</option>
           </select>
 
-          {/* Work Description */}
+          
           <textarea
             placeholder="Work Description"
             value={work}
@@ -111,7 +111,7 @@ function DPRForm() {
             required
           />
 
-          {/* Worker Count */}
+         
           <input
             type="number"
             placeholder="Worker Count"
@@ -121,7 +121,7 @@ function DPRForm() {
             min={1}
           />
 
-          {/* Photo Upload */}
+          
           <input
             type="file"
             accept="image/*"
@@ -129,22 +129,21 @@ function DPRForm() {
             onChange={handleImageChange}
           />
 
-          {/* Preview Thumbnails */}
           <div className="image-preview">
             {images.map((img, index) => (
               <img key={index} src={img} alt={`preview-${index}`} />
             ))}
           </div>
 
-          {/* Submit */}
+  
           <button type="submit">Submit DPR</button>
 
-          {/* Error / Validation Message */}
+          
           {message && <p className="message">{message}</p>}
         </form>
       </div>
 
-      {/* Toast Container */}
+      
       <ToastContainer />
     </div>
   );

@@ -12,7 +12,6 @@
   position: relative;
 }
 
-/* Card */
 .form-box {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -27,7 +26,7 @@
   z-index: 1;
 }
 
-/* Fixed Back Arrow */
+
 .fixed-back-arrow {
   position: fixed;
   top: 20px;
@@ -44,7 +43,7 @@
   color: #c084fc;
 }
 
-/* Headings */
+
 .form-box h2 {
   font-family: 'Playfair Display', serif;
   font-size: 2rem;
@@ -53,7 +52,7 @@
   margin-bottom: 16px;
 }
 
-/* Form Elements */
+
 .form-box form input,
 .form-box form textarea,
 .form-box form select {
@@ -67,12 +66,12 @@
   font-family: 'DM Sans', sans-serif;
   outline: none;
   transition: border-color 0.2s, background 0.2s;
-  appearance: none; /* Remove default arrow in some browsers */
+  appearance: none; 
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-/* Focus effect */
+
 .form-box form input:focus,
 .form-box form textarea:focus,
 .form-box form select:focus {
@@ -80,20 +79,20 @@
   background: rgba(255,255,255,0.1);
 }
 
-/* Placeholder text */
+
 .form-box form input::placeholder,
 .form-box form textarea::placeholder,
 .form-box form select::placeholder {
   color: rgba(255,255,255,0.3);
 }
 
-/* Options inside dropdown */
+
 .form-box form select option {
-  background-color: #1b1b2f; /* dark background for options */
-  color: #fff; /* white text */
+  background-color: #1b1b2f; 
+  color: #fff;
 }
 
-/* Submit Button */
+
 .form-box button {
   width: 100%;
   padding: 14px;
@@ -118,7 +117,7 @@
   transform: translateY(0);
 }
 
-/* Validation / Error message */
+
 .message {
   font-size: 0.82rem;
   color: #ff6b8a;
@@ -126,7 +125,7 @@
   text-align: center;
 }
 
-/* Image previews */
+
 .image-preview {
   display: flex;
   gap: 10px;

@@ -26,7 +26,7 @@ function ForgotPassword() {
   return (
     <div className="forgot-container">
       <div className="forgot-box">
-        {/* Back Arrow */}
+        
         <div className="back-arrow" onClick={() => navigate("/")}>
           ← Back
         </div>
