@@ -6,17 +6,13 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // react-router-dom navigation hook
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    const validUser = users.find(
-      (u) => u.email === email && u.password === password
-    );
-
-    if (validUser) {
+    // Mock authentication
+    if (email === "test@test.com" && password === "123456") {
       localStorage.setItem("loggedUser", email);
-      navigate("/projects"); // Navigate to projects page
+      navigate("/projects");
     } else {
       setError("Invalid Email or Password");
     }
@@ -50,7 +46,7 @@ function Login() {
           Sign In
         </button>
 
-        <p className="error-msg">{error}</p>
+        {error && <p className="error-msg">{error}</p>}
 
         <hr className="divider" />
 
