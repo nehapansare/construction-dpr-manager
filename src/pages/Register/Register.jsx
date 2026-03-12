@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Register.css";
 
 function Register() {
@@ -15,6 +17,8 @@ function Register() {
 
     if (password !== repassword) {
       setError("Passwords do not match");
+      // Show error toast
+      toast.error("Passwords do not match", { theme: "dark" });
       return;
     }
 
@@ -23,14 +27,29 @@ function Register() {
 
     if (userExists) {
       setError("User already exists");
+      toast.error("User already exists", { theme: "dark" });
       return;
     }
 
     users.push({ email, password });
     localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Registration Successful");
-    navigate("/"); // Navigate back to login page
+    toast.success("✅ Registration Successful!", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "dark",
+    });
+
+    // Reset form
+    setEmail("");
+    setPassword("");
+    setRepassword("");
+    setError("");
+
+    // Navigate back after short delay
+    setTimeout(() => {
+      navigate("/");
+    }, 1500);
   };
 
   return (
@@ -80,6 +99,9 @@ function Register() {
           </p>
         </form>
       </div>
+
+      {/* Toast container */}
+      <ToastContainer />
     </div>
   );
 }

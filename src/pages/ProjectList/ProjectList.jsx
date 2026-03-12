@@ -1,4 +1,4 @@
-import projects from "../data/projects";
+import projects from "../../data/projects";
 import { useNavigate } from "react-router-dom";
 import "./ProjectList.css";
 
@@ -8,6 +8,11 @@ function ProjectList() {
   return (
     <div className="project-page">
       <div className="project-container">
+        {/* Back Arrow */}
+        <div className="back-arrow" onClick={() => navigate("/")}>
+          ← Back
+        </div>
+
         <h1 className="project-title">Construction Projects</h1>
 
         <div className="project-grid">
